@@ -4,6 +4,8 @@ var app = new Vue({
     message: "Olá Vue!",
     tasks: [],
     modoAdicionar: false,
+    modoEditar: false,
+    att: 0,
     criacao: {
       title: "",
       dueTo: null,
@@ -27,9 +29,24 @@ var app = new Vue({
         this.modoAdicionar = false;
       }
     },
+    editar(id) {
+      this.att = id;
+      if (this.modoEditar == false) {
+        this.modoEditar = true;
+      } else {
+        this.modoEditar = false;
+      }
+    },
     salvar() {
       fetch("http://localhost:3000/tasks", {
         method: "POST",
+        headers: { "content-Type": "application/json" },
+        body: JSON.stringify(this.criacao),
+      });
+    },
+    salvarEdicao() {
+      fetch(`http://localhost:3000/tasks/${this.att}`, {
+        method: "PATCH",
         headers: { "content-Type": "application/json" },
         body: JSON.stringify(this.criacao),
       });
