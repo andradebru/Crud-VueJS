@@ -53,6 +53,42 @@
         </div>
       </div>
 
+      <!-- criar nova tarefa -->
+      <div>
+        <h2>New Task</h2>
+        <form action="">
+          <div class="input-field col s12">
+            <input
+              placeholder="Title"
+              id="title"
+              type="text"
+              class="validate"
+              required
+            />
+            <label for="title">Title</label>
+          </div>
+
+          <div class="input-field col s12">
+            <select id="project">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="Estudos">Estudos</option>
+              <option value="Financeiro">Financeiro</option>
+              <option value="Trabalho">Trabalho</option>
+            </select>
+            <label for="project">Pick a Project</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input type="text" class="datepicker" id="dueTo" />
+            <label for="dueTo">Date due to</label>
+          </div>
+
+          <a class="waves-effect waves-light btn-large" id="btnSave">Save</a>
+        </form>
+      </div>
+
+      <!-- fim criar nova tarefa -->
+
       <footer class="page-footer orange darken-3">
         <div class="footer-copyright">
           <div class="container">© 2022 Frontend</div>
