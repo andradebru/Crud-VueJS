@@ -4,6 +4,12 @@ var app = new Vue({
     message: "Olá Vue!",
     tasks: [],
     modoAdicionar: false,
+    criacao: {
+      title: "",
+      dueTo: null,
+      project: "",
+      usuario: "",
+    },
   },
   methods: {
     getTasks() {
@@ -15,10 +21,18 @@ var app = new Vue({
         });
     },
     adicionar() {
-      this.modoAdicionar = true;
+      if (this.modoAdicionar == false) {
+        this.modoAdicionar = true;
+      } else {
+        this.modoAdicionar = false;
+      }
     },
     salvar() {
-      this.modoAdicionar = false;
+      fetch("http://localhost:3000/tasks", {
+        method: "POST",
+        headers: { "content-Type": "application/json" },
+        body: JSON.stringify(this.criacao),
+      });
     },
     deletar(id) {
       fetch(`http://localhost:3000/tasks/${id}`, { method: "DELETE" });
