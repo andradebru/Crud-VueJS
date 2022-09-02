@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>To Do</title>
     <!-- Materialize CSS CDN -->
     <link
       rel="stylesheet"
@@ -25,11 +25,11 @@
       <nav class="orange darken-2">
         <div class="nav-wrapper"></div>
       </nav>
-
+      ​
       <div class="container">
         <div class="section">
           <!--   Icon Section   -->
-          <div class="row">
+          <div class="row" v-show="!modoAdicionar">
             <!-- card de tarefa que repete para cada item do array -->
             <div v-for="tarefa in tasks" class="card horizontal">
               <div class="card-stacked">
@@ -38,7 +38,54 @@
                   <span class="projeto">{{ tarefa.project }}</span>
                 </div>
                 <div class="card-action">
-                  <a href="#">This is a link</a>
+                  <button>Editar</button>
+                  <button @click="deletar(tarefa.id)">Deletar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          ​
+          <!-- NOVA TAREFA -->
+          <div class="row" v-show="modoAdicionar">
+            <div class="col s12">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <h2>New Task</h2>
+                    <form action="">
+                      <div class="input-field col s12">
+                        <input
+                          placeholder="Title"
+                          id="title"
+                          type="text"
+                          class="validate"
+                          required
+                        />
+                        <label for="title">Title</label>
+                      </div>
+                      ​
+                      <!-- <div class="input-field col s12">
+                        <select id="project">
+                          <option value="" disabled selected>
+                            Choose your option
+                          </option>
+                          <option value="Estudos">Estudos</option>
+                          <option value="Financeiro">Financeiro</option>
+                          <option value="Trabalho">Trabalho</option>
+                        </select>
+                        <label for="project">Pick a Project</label>
+                      </div> -->
+                      ​
+                      <div class="input-field col s12">
+                        <input type="date" class="datepicker" id="dueTo" />
+                        <label for="dueTo">Date due to</label>
+                      </div>
+                      ​
+                      <a class="waves-effect waves-light btn-large" id="btnSave"
+                        >Save</a
+                      >
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -47,48 +94,12 @@
         <div class="add">
           <a
             class="btn-floating btn-large waves-effect waves-light red"
-            href="tasksNew.html"
+            @click="adicionar"
             ><i class="fa-solid fa-plus"></i
           ></a>
         </div>
       </div>
-
-      <!-- criar nova tarefa -->
-      <div>
-        <h2>New Task</h2>
-        <form action="">
-          <div class="input-field col s12">
-            <input
-              placeholder="Title"
-              id="title"
-              type="text"
-              class="validate"
-              required
-            />
-            <label for="title">Title</label>
-          </div>
-
-          <div class="input-field col s12">
-            <select id="project">
-              <option value="" disabled selected>Choose your option</option>
-              <option value="Estudos">Estudos</option>
-              <option value="Financeiro">Financeiro</option>
-              <option value="Trabalho">Trabalho</option>
-            </select>
-            <label for="project">Pick a Project</label>
-          </div>
-
-          <div class="input-field col s12">
-            <input type="text" class="datepicker" id="dueTo" />
-            <label for="dueTo">Date due to</label>
-          </div>
-
-          <a class="waves-effect waves-light btn-large" id="btnSave">Save</a>
-        </form>
-      </div>
-
-      <!-- fim criar nova tarefa -->
-
+      ​
       <footer class="page-footer orange darken-3">
         <div class="footer-copyright">
           <div class="container">© 2022 Frontend</div>
@@ -96,10 +107,10 @@
       </footer>
     </div>
     <!-- app -->
-
+    ​
     <!-- Materialize JavaScript CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+    ​
     <script src="./todo.js"></script>
   </body>
 </html>
